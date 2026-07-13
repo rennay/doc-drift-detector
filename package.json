@@ -1,0 +1,13 @@
+{
+  "name": "doc-drift-detector",
+  "version": "1.0.0",
+  "description": "Kiro hook that watches for behavior changes in code and flags documentation that needs updating",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "5.5.3"
+  }
+}
