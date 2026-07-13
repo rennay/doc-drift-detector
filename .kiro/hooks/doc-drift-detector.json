@@ -1,0 +1,21 @@
+{
+    "enabled": true,
+    "name": "Doc-Drift Detector",
+    "description": "Watches for behavior changes in code and flags documentation that needs updating. On every source file save, compares current code behavior against project docs and
+  appends drift findings to DOC_DRIFT.md.",
+    "version": "1",
+    "when": {
+      "type": "fileSave",
+      "filePattern": "src/**/*.{ts,js,py,java}"
+    },
+    "then": {
+      "type": "askAgent",
+      "prompt": "A source file was just saved. Your job is to detect documentation drift.\n\n## Instructions\n\n1. Read the saved file and identify its PUBLIC behavior: exported functions,
+  class methods, type signatures, config options, CLI flags, error messages, return types, and default values.\n\n2. Read all documentation files in the project: README.md, docs/**,
+  CHANGELOG.md, and any inline JSDoc/docstrings in the saved file itself.\n\n3. Compare: does the code introduce or change behavior that is NOT reflected in the documentation?\n\n4. If
+  drift is detected, append a timestamped entry to DOC_DRIFT.md in this format:\n\n---\n## 🔍 Drift Detected — [YYYY-MM-DD HH:MM]\n\n**Source file:** `<path>`\n\n**Documentation
+  affected:**\n- `<doc-file>` — <what needs updating>\n\n**What changed in code:**\n- <bullet list of behavioral changes>\n\n**Suggested doc update:**\n- <specific text or section to
+  add/modify>\n\n---\n\n5. If NO drift is detected (docs are already accurate), do nothing. Do not create or modify any files.\n\n## Important\n- Only flag PUBLIC/EXPORTED behavior changes,
+  not internal implementation details.\n- Be specific about which doc file and which section needs updating.\n- Do NOT auto-edit documentation files — only report to DOC_DRIFT.md."
+    }
+  }
